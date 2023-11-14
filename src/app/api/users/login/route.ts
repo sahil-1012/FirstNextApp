@@ -32,7 +32,14 @@ export async function POST(request: NextRequest) {
         delete user.password;
 
         const resp = NextResponse.json({ success: true, message: 'Login successful', token, user });
-        resp.cookies.set("token", token, { httpOnly: true, });
+        const twoHoursInMilliseconds = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+
+        // Assuming `resp` is your response object
+        resp.cookies.set("token", token, {
+            httpOnly: true,
+            expires: new Date(Date.now() + twoHoursInMilliseconds),
+        });
+
         return resp;
 
     } catch (error: any) {
