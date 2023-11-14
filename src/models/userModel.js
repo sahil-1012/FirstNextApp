@@ -15,6 +15,6 @@ const userSchema = new mongoose.Schema({
 
 
 // ~ HERE THE DATA CONNECTION IS CONNECTED EACH TIME WE REQUIRE..
-const User = mongoose.model.users || mongoose.model('users', userSchema);
+const User = mongoose.models.users || mongoose.model('users', userSchema);
 
 export default User;
